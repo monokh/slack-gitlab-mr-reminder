@@ -9,7 +9,7 @@ npm install slack-gitlab-mr-reminder
 `
 
 ## Example - running
-Call `remind.js` with a suitable `yml` config, gitlab access token and slack webhook. See [example.yml](blob/master/examples/config.yml) for an example of config.
+Call `remind.js` with a suitable `yml` config, gitlab access token and slack webhook. See [example.yml](examples/config.yml) for an example of config.
 
 `
 GITLAB_ACCESS_TOKEN='XXXXXXXXXXXXX' SLACK_WEBHOOK_URL='https://hooks.slack.com/services/...' node src/remind.js examples/config.yml 
