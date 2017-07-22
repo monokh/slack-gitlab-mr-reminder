@@ -1,0 +1,6 @@
+gitlab:
+  group: mygroup
+slack: 
+  channel: merge-requests
+  name: Gitlab Reminder
+  message: Get to work on those merge requests!
