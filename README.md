@@ -1,4 +1,6 @@
 # slack-gitlab-mr-reminder
+[![npm version](https://badge.fury.io/js/slack-gitlab-mr-reminder.svg)](https://badge.fury.io/js/slack-gitlab-mr-reminder)
+
 This node module can be used to send slack reminders for overdue gitlab merge requests. The criteria for this is currently merge requests not updated for longer than 1 day. There are plans for the criteria to be configurable.
 
 ## Installation
