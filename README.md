@@ -15,6 +15,14 @@ Call `remind.js` with a suitable `yml` config, gitlab access token and slack web
 GITLAB_ACCESS_TOKEN='XXXXXXXXXXXXX' SLACK_WEBHOOK_URL='https://hooks.slack.com/services/...' node src/remind.js examples/config.yml 
 `
 
+This will only run once and send a reminder. You will likely want to run this everyday therefore a cron would be suitable:
+
+`
+0 9 * * * GITLAB_ACCESS_TOKEN='...' SLACK_WEBHOOK_URL='...' node /absolute/path/to/src/remind.js /absolute/path/to/config.yml 
+`
+
+This will send out reminders every day at 9AM
+
 ## Example - module
 You may use the functionality as a module:
 
