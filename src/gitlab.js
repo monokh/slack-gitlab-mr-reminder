@@ -2,14 +2,15 @@ var request = require('request-promise-native');
 
 class GitLab
 {
-  constructor(access_token, group) {
+  constructor(external_url, access_token, group) {
+    this.external_url = external_url;
     this.access_token = access_token;
     this.group = group;
   }
 
   getProjectMergeRequests(project_id) {
     const options = {
-      uri: `https://gitlab.com/api/v4/projects/${project_id}/merge_requests?state=opened`,
+      uri: `${this.external_url}/api/v4/projects/${project_id}/merge_requests?state=opened`,
       headers: {
         'PRIVATE-TOKEN': this.access_token
       },

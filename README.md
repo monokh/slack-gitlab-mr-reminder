@@ -45,7 +45,9 @@ reminder.remind();
 
 ## Options
 
-- `gitlab.group` - The name of the group to watch for merge requests
-- `slack.channel` - The slack channel to post to
-- `slack.name` - Name of the slack poster
-- `slack.message` - Message to send at the top of the slack message
+- `gitlab.group` - The name of the group to watch for merge requests - Required
+- `gitlab.external_url` - The url of the gitlab installation - Defaults to https://gitlab.com (the public gitlab)
+
+- `slack.channel` - The slack channel to post to - Required
+- `slack.name` - Name of the slack poster - Defaults to `GitLab Reminder`
+- `slack.message` - Message to send at the top of the slack message - Defaults to `Merge requests are overdue:`

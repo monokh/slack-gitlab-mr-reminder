@@ -8,9 +8,10 @@ class SlackGitlabMRReminder {
 
   constructor(options) {
     this.options = options;
+    this.options.gitlab.external_url = this.options.gitlab.external_url || 'https://gitlab.com';
     this.options.slack.name = this.options.slack.name || 'GitLab Reminder';
     this.options.slack.message = this.options.slack.message || 'Merge requests are overdue:';
-    this.gitlab = new GitLab(this.options.gitlab.access_token, this.options.gitlab.group);
+    this.gitlab = new GitLab(this.options.gitlab.external_url, this.options.gitlab.access_token, this.options.gitlab.group);
     this.webhook = new slack.IncomingWebhook(this.options.slack.webhook_url, {
       username: this.options.slack.name,
       iconUrl: SLACK_LOGO_URL,
