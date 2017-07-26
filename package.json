@@ -1,6 +1,6 @@
 {
   "name": "slack-gitlab-mr-reminder",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Send reminders about gitlab merge requests to slack",
   "main": "src/index.js",
   "scripts": {
