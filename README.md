@@ -1,4 +1,5 @@
 # slack-gitlab-mr-reminder
+by [Monokh](https://monokh.com)
 [![npm version](https://badge.fury.io/js/slack-gitlab-mr-reminder.svg)](https://badge.fury.io/js/slack-gitlab-mr-reminder)
 
 This node module can be used to send slack reminders for overdue gitlab merge requests. The criteria for this is currently merge requests not updated for longer than 1 day. There are plans for the criteria to be configurable.
@@ -8,17 +9,23 @@ This node module can be used to send slack reminders for overdue gitlab merge re
 npm install slack-gitlab-mr-reminder
 `
 
-## Example - running
-Call `remind.js` with a suitable `yml` config, gitlab access token and slack webhook. See [example.yml](examples/config.yml) for an example of config.
+## Example - running as an application
+Install the module globally
 
 `
-GITLAB_ACCESS_TOKEN='XXXXXXXXXXXXX' SLACK_WEBHOOK_URL='https://hooks.slack.com/services/...' node src/remind.js examples/config.yml 
+npm install -g slack-gitlab-mr-reminder
 `
 
-This will only run once and send a reminder. You will likely want to run this everyday therefore a cron would be suitable:
+Call `slack-gitlab-mr-reminder` with a suitable `yml` config, gitlab access token and slack webhook. See [example.yml](examples/config.yml) for an example of config.
 
 `
-0 9 * * * GITLAB_ACCESS_TOKEN='...' SLACK_WEBHOOK_URL='...' node /absolute/path/to/src/remind.js /absolute/path/to/config.yml 
+GITLAB_ACCESS_TOKEN='...' SLACK_WEBHOOK_URL='...' slack-gitlab-mr-reminder examples/config.yml 
+`
+
+This will only run once and send a reminder. You will likely want to run this everyday for which a cron would be suitable:
+
+`
+0 9 * * * GITLAB_ACCESS_TOKEN='...' SLACK_WEBHOOK_URL='...' slack-gitlab-mr-reminder /absolute/path/to/config.yml 
 `
 
 This will send out reminders every day at 9AM
@@ -51,3 +58,9 @@ reminder.remind();
 - `slack.channel` - The slack channel to post to - Required
 - `slack.name` - Name of the slack poster - Defaults to `GitLab Reminder`
 - `slack.message` - Message to send at the top of the slack message - Defaults to `Merge requests are overdue:`
+
+## Change Log
+
+### 1.2.0
+- Fixed bug which was causing `gitlab.external_url` option to not work correctly
+- Added binary to package

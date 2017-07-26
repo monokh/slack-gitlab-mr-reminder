@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var yaml = require('js-yaml');
 var fs = require('fs');
 var SlackGitlabMRReminder = require('./slack-gitlab-mr-reminder');
