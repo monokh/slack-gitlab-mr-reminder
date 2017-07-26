@@ -21,7 +21,7 @@ class GitLab
 
   getMergeRequests() {
     const options = {
-      uri: `https://gitlab.com/api/v4/groups/${this.group}/projects`,
+      uri: `${this.external_url}/api/v4/groups/${this.group}/projects`,
       headers: {
         'PRIVATE-TOKEN': this.access_token
       },
