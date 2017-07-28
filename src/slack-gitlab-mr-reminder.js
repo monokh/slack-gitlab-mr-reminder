@@ -37,17 +37,28 @@ class SlackGitlabMRReminder {
   }
   
   remind() {
-    this.gitlab.getMergeRequests()
+    return this.gitlab.getGroupMergeRequests()
     .then((merge_requests) => {
       return merge_requests.filter((mr) => {
         return moment().diff(moment(mr.updated_at), 'days') > 0;
       });
     })
-    .then(this.createSlackMessage.bind(this))
+    .then((merge_requests) => {
+      if(merge_requests.length > 0) {
+        return this.createSlackMessage(merge_requests);
+      }
+      else {
+        throw 'No reminders to send'
+      }
+    })
     .then((message) => {
-      this.webhook.send(message, (err, res) => {
-        console.log(err ? err : 'reminder sent');
+      return new Promise((resolve, reject) => {
+        this.webhook.send(message, (err, res) => {
+          err ? reject(err) : resolve('Reminder sent');
+        });
       });
+    }, (message) => {
+      return Promise.resolve(message);
     });
   }
 
