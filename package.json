@@ -1,10 +1,10 @@
 {
   "name": "slack-gitlab-mr-reminder",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Send reminders about gitlab merge requests to slack",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "bin": {
     "slack-gitlab-mr-reminder": "./src/remind.js"
@@ -31,5 +31,8 @@
     "moment": "^2.18.1",
     "request": "^2.81.0",
     "request-promise-native": "^1.0.4"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4"
   }
 }

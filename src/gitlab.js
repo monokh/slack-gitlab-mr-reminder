@@ -19,7 +19,7 @@ class GitLab
     return request(options);
   }
 
-  getMergeRequests() {
+  getProjects() {
     const options = {
       uri: `${this.external_url}/api/v4/groups/${this.group}/projects`,
       headers: {
@@ -28,7 +28,11 @@ class GitLab
       json: true
     };
 
-    return request(options)
+    return request(options);
+  }
+
+  getGroupMergeRequests() {
+    return this.getProjects()
     .then((projects) => {
       return Promise.all(projects.map((project) => this.getProjectMergeRequests(project.id)));
     })
