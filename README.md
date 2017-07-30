@@ -1,9 +1,17 @@
+<div align="center">
+
 # slack-gitlab-mr-reminder
 by [Monokh](https://monokh.com)
 
-[![npm version](https://badge.fury.io/js/slack-gitlab-mr-reminder.svg)](https://badge.fury.io/js/slack-gitlab-mr-reminder)
+[![npm version](https://badge.fury.io/js/slack-gitlab-mr-reminder.svg)](https://badge.fury.io/js/slack-gitlab-mr-reminder) 
+[![Build Status](https://travis-ci.org/monokh/slack-gitlab-mr-reminder.svg?branch=master)](https://travis-ci.org/monokh/slack-gitlab-mr-reminder)
 
-This node module can be used to send slack reminders for overdue gitlab merge requests. The criteria for this is currently merge requests not updated for longer than 1 day. There are plans for the criteria to be configurable.
+This node module can be used to send slack reminders for overdue gitlab merge requests. The criteria for this is currently merge requests not updated for longer than 1 day.
+
+<img src="screenshot.png" width="500" height="auto"/>
+
+</div>
+
 
 ## Installation
 `
