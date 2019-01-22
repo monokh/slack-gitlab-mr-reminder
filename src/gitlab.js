@@ -45,14 +45,19 @@ class GitLab
       const resp = await request(options);
       const firstPage = resp.body;
       const totalPages = Number(resp.headers['x-total-pages']);
-      // console.log(resp.headers);
+      console.log(resp.headers);
 
       for(let pageNumber = 2; pageNumber <= totalPages; pageNumber++) {
         promises.push(this.getProject({ page: pageNumber }));
       }
 
       let [projects] = await Promise.all(promises);
-      projects = projects.concat(firstPage); 
+      if (totalPages > 1) {
+        projects = projects.concat(firstPage); 
+      } else {
+        projects = firstPage;
+      }
+
       // console.log('projects', projects.length);
       return projects;
     } catch(e) {
