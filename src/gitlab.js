@@ -10,7 +10,7 @@ class GitLab
 
   getProjectMergeRequests(project_id) {
     const options = {
-      uri: `${this.external_url}/api/v4/projects/${project_id}/merge_requests?state=opened`,
+      uri: `${this.external_url}/api/v4/projects/${project_id}/merge_requests?state=opened  `,
       headers: {
         'PRIVATE-TOKEN': this.access_token
       },
@@ -19,16 +19,45 @@ class GitLab
     return request(options);
   }
 
-  getProjects() {
+  getProject({ page = 1 }) {
+    console.log(page);
     const options = {
-      uri: `${this.external_url}/api/v4/groups/${this.group}/projects`,
+      uri: `${this.external_url}/api/v4/groups/${this.group}/projects?page=${page}`,
       headers: {
         'PRIVATE-TOKEN': this.access_token
       },
       json: true
     };
-
     return request(options);
+  }
+
+  async getProjects() {
+    const options = {
+      uri: `${this.external_url}/api/v4/groups/${this.group}/projects`,
+      headers: {
+        'PRIVATE-TOKEN': this.access_token
+      },
+      json: true,
+      resolveWithFullResponse: true,
+    };
+    try {
+      let promises = []
+      const resp = await request(options);
+      const firstPage = resp.body;
+      const totalPages = Number(resp.headers['x-total-pages']);
+      // console.log(resp.headers);
+
+      for(let pageNumber = 2; pageNumber <= totalPages; pageNumber++) {
+        promises.push(this.getProject({ page: pageNumber }));
+      }
+
+      let [projects] = await Promise.all(promises);
+      projects = projects.concat(firstPage); 
+      // console.log('projects', projects.length);
+      return projects;
+    } catch(e) {
+      console.log(e);
+    }
   }
 
   getGroupMergeRequests() {
