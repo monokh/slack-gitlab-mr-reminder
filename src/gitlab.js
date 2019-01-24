@@ -34,10 +34,6 @@ class GitLab
       const resp = await request(options);
       const firstPage = resp.body;
       const totalPages = Number(resp.headers['x-total-pages']);
-      console.log(resp.headers);
-      // console.log(resp.body);
-      // console.log("merges_totalPages",totalPages);
-
       for(let pageNumber = 2; pageNumber <= totalPages; pageNumber++) {
         promises.push(this._getProjectMergeRequest(project_id,{ page: pageNumber }));
       }
@@ -47,15 +43,15 @@ class GitLab
       if (totalPages > 1) {
         merge_requests = merge_requests.concat(await Promise.all(promises)); 
       } 
-      // console.log('merge_requests', merge_requests);
+      // 
+      .log('merge_requests', merge_requests);
       return merge_requests;
     } catch(e) {
-      console.log(e);
+      throw e;
     }
   }
 
   _getProject({ page = 1 }) {
-    // console.log(page);
     const options = {
       uri: `${this.external_url}/api/v4/groups/${this.group}/projects?page=${page}`,
       headers: {
