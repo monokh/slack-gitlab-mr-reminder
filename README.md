@@ -70,7 +70,8 @@ reminder.remind();
 
 ## Change Log
 
-### 1.2.2
+### 1.2.0
 - Fixed bug which was causing `gitlab.external_url` option to not work correctly
 - Added binary to package
+### 1.2.1
 - Added gitlab pagination support
