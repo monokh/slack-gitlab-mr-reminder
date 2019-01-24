@@ -43,8 +43,6 @@ class GitLab
       if (totalPages > 1) {
         merge_requests = merge_requests.concat(await Promise.all(promises)); 
       } 
-      // 
-      .log('merge_requests', merge_requests);
       return merge_requests;
     } catch(e) {
       throw e;
