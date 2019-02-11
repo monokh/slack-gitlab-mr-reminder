@@ -19,7 +19,10 @@
     "slack",
     "reminder"
   ],
-  "author": "monokh (https://monokh.com)",
+  "contributors": [
+    "monokh (https://monokh.com)",
+    "truongsinh <sinh@inspectorio.com> (https://inspectorio.com)"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/monokh/slack-gitlab-mr-reminder/issues"
