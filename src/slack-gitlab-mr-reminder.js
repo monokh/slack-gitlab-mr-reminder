@@ -8,9 +8,12 @@ class SlackGitlabMRReminder {
 
   constructor(options) {
     this.options = options;
+    this.options.mr = this.options.mr || {}; // backward compatible;
     this.options.gitlab.external_url = this.options.gitlab.external_url || 'https://gitlab.com';
     this.options.slack.name = this.options.slack.name || 'GitLab Reminder';
     this.options.slack.message = this.options.slack.message || 'Merge requests are overdue:';
+    this.options.mr.normal_mr_days_threshold = this.options.mr.normal_mr_days_threshold || 0;
+    this.options.mr.wip_mr_days_threshold = this.options.mr.normal_mr_days_threshold || 7;
     this.gitlab = new GitLab(this.options.gitlab.external_url, this.options.gitlab.access_token, this.options.gitlab.group);
     this.webhook = new slack.IncomingWebhook(this.options.slack.webhook_url, {
       username: this.options.slack.name,

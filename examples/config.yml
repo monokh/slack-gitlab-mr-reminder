@@ -1,3 +1,5 @@
+mr:
+  normal_mr_days_threshold: 3
 gitlab:
   group: mygroup
 slack: 
