@@ -1,6 +1,6 @@
 {
   "name": "slack-gitlab-mr-reminder",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "Send reminders about gitlab merge requests to slack",
   "main": "src/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/monokh/slack-gitlab-mr-reminder.git"
+    "url": "git+https://github.com/inspectorioinc/slack-gitlab-mr-reminder.git"
   },
   "keywords": [
     "gitlab",
@@ -19,12 +19,15 @@
     "slack",
     "reminder"
   ],
-  "author": "monokh (https://monokh.com)",
+  "contributors": [
+    "monokh (https://monokh.com)",
+    "truongsinh <sinh@inspectorio.com> (https://inspectorio.com)"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/monokh/slack-gitlab-mr-reminder/issues"
+    "url": "https://github.com/inspectorioinc/slack-gitlab-mr-reminder/issues"
   },
-  "homepage": "https://github.com/monokh/slack-gitlab-mr-reminder#readme",
+  "homepage": "https://github.com/inspectorioinc/slack-gitlab-mr-reminder#readme",
   "dependencies": {
     "@slack/client": "^3.10.0",
     "js-yaml": "^3.9.0",
