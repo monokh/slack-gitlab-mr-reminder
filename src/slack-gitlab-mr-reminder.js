@@ -1,6 +1,7 @@
 var moment = require('moment');
 var slack = require('@slack/client');
 var GitLab = require('./gitlab');
+const { isWipMr } = require('./is-wip-mr');
 
 const SLACK_LOGO_URL = 'https://about.gitlab.com/images/press/logo/logo.png';
 
@@ -13,7 +14,7 @@ class SlackGitlabMRReminder {
     this.options.slack.name = this.options.slack.name || 'GitLab Reminder';
     this.options.slack.message = this.options.slack.message || 'Merge requests are overdue:';
     this.options.mr.normal_mr_days_threshold = this.options.mr.normal_mr_days_threshold || 0;
-    this.options.mr.wip_mr_days_threshold = this.options.mr.normal_mr_days_threshold || 7;
+    this.options.mr.wip_mr_days_threshold = this.options.mr.wip_mr_days_threshold || 7;
     this.gitlab = new GitLab(this.options.gitlab.external_url, this.options.gitlab.access_token, this.options.gitlab.group);
     this.webhook = new slack.IncomingWebhook(this.options.slack.webhook_url, {
       username: this.options.slack.name,
@@ -42,7 +43,8 @@ class SlackGitlabMRReminder {
   async remind() {
     let merge_requests = await this.gitlab.getGroupMergeRequests();
     merge_requests = merge_requests.filter((mr) => {
-      return moment().diff(moment(mr.updated_at), 'days') > 0;
+      const threshold = isWipMr(mr.title) ? this.options.mr.wip_mr_days_threshold : this.options.mr.normal_mr_days_threshold;
+      return moment().diff(moment(mr.updated_at), 'days') > threshold;
     });
     if(merge_requests.length === 0) {
       return 'No reminders to send'
