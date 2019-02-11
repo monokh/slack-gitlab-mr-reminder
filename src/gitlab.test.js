@@ -14,7 +14,7 @@ const mock_merge_requests = [
       name: 'person'
     },
     web_url: 'https://gitlab.com/merge/1',
-    updated_at: 1234567
+    updated_at: (new Date()).valueOf()
   },
   {
     id: 2,
@@ -24,11 +24,11 @@ const mock_merge_requests = [
       name: 'person'
     },
     web_url: 'https://gitlab.com/merge/2',
-    updated_at: 1234567
+    updated_at: (new Date()).valueOf()
   }
 ]
 
-test('merge requests are retrieved', () => {
+test('merge requests are retrieved', async () => {
   const gitlab = new GitLab('https://gitlab.com', 'xxx', 'mygroup');
   gitlab.getProjects = jest.fn(() => { 
     return new Promise((resolve, reject) => {
@@ -45,15 +45,14 @@ test('merge requests are retrieved', () => {
     });
   });
 
-  return gitlab.getGroupMergeRequests().then((result) => {
-    expect(result).toContainEqual(mock_merge_requests[0]);
-    expect(result).toContainEqual(mock_merge_requests[1]);
-    expect(gitlab.getProjects).toHaveBeenCalled();
-    expect(gitlab.getProjectMergeRequests).toHaveBeenCalledWith(1);
-  });
+  const result = await gitlab.getGroupMergeRequests();
+  expect(result).toContainEqual(mock_merge_requests[0]);
+  expect(result).toContainEqual(mock_merge_requests[1]);
+  expect(gitlab.getProjects).toHaveBeenCalled();
+  expect(gitlab.getProjectMergeRequests).toHaveBeenCalledWith(1);
 });
 
-test('No open merge requests work', () => {
+test('No open merge requests work', async () => {
   const gitlab = new GitLab('https://gitlab.com', 'xxx', 'mygroup');
   gitlab.getProjects = jest.fn(() => { 
     return new Promise((resolve, reject) => {
@@ -70,9 +69,8 @@ test('No open merge requests work', () => {
     });
   });
 
-  return gitlab.getGroupMergeRequests().then((result) => {
-    expect(result).toEqual([]);
-    expect(gitlab.getProjects).toHaveBeenCalled();
-    expect(gitlab.getProjectMergeRequests).toHaveBeenCalledWith(1);
-  });
+  const result = await gitlab.getGroupMergeRequests();
+  expect(result).toEqual([]);
+  expect(gitlab.getProjects).toHaveBeenCalled();
+  expect(gitlab.getProjectMergeRequests).toHaveBeenCalledWith(1);
 });
