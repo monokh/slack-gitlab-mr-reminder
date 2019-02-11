@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/monokh/slack-gitlab-mr-reminder.git"
+    "url": "git+https://github.com/inspectorioinc/slack-gitlab-mr-reminder.git"
   },
   "keywords": [
     "gitlab",
@@ -25,9 +25,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/monokh/slack-gitlab-mr-reminder/issues"
+    "url": "https://github.com/inspectorioinc/slack-gitlab-mr-reminder/issues"
   },
-  "homepage": "https://github.com/monokh/slack-gitlab-mr-reminder#readme",
+  "homepage": "https://github.com/inspectorioinc/slack-gitlab-mr-reminder#readme",
   "dependencies": {
     "@slack/client": "^3.10.0",
     "js-yaml": "^3.9.0",

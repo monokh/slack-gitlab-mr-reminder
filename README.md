@@ -1,10 +1,9 @@
 <div align="center">
 
 # slack-gitlab-mr-reminder
-by [Monokh](https://monokh.com)
 
 [![npm version](https://badge.fury.io/js/slack-gitlab-mr-reminder.svg)](https://badge.fury.io/js/slack-gitlab-mr-reminder) 
-[![Build Status](https://travis-ci.org/monokh/slack-gitlab-mr-reminder.svg?branch=master)](https://travis-ci.org/monokh/slack-gitlab-mr-reminder)
+[![Build Status](https://travis-ci.org/inspectorioinc/slack-gitlab-mr-reminder.svg?branch=master)](https://travis-ci.org/inspectorioinc/slack-gitlab-mr-reminder)
 
 This node module can be used to send slack reminders for overdue gitlab merge requests. The criteria for this can be configured, but default is that:
 - WIP merge requests not updated for longer than 7 day.
