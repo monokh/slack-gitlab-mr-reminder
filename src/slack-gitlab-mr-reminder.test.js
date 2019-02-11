@@ -34,7 +34,7 @@ const mock_merge_requests = [
   }
 ]
 
-test('merge requests reminder is sent', () => {
+test('merge requests reminder is sent', async () => {
   var reminder = new SlackGitlabMRReminder(mock_options);
   reminder.gitlab.getGroupMergeRequests = jest.fn(() => {
     return new Promise((resolve, reject) => {
@@ -43,13 +43,12 @@ test('merge requests reminder is sent', () => {
       });
     });
   });
-  return reminder.remind().then((result) => {
-    expect(result).toBe('Reminder sent');
-    expect(reminder.webhook.send).toHaveBeenCalled();
-  });
+  const result = await reminder.remind();
+  expect(result).toBe('Reminder sent');
+  expect(reminder.webhook.send).toHaveBeenCalled();
 });
 
-test('no merge requests to send', () => {
+test('no merge requests to send', async () => {
   var reminder = new SlackGitlabMRReminder(mock_options);
   reminder.gitlab.getGroupMergeRequests = jest.fn(() => {
     return new Promise((resolve, reject) => {
@@ -59,5 +58,5 @@ test('no merge requests to send', () => {
     });
   });
   
-  return expect(reminder.remind()).resolves.toEqual('No reminders to send');
+  expect(await reminder.remind()).toEqual('No reminders to send');
 });
